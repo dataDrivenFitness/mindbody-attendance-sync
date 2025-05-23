@@ -1,0 +1,24 @@
+name: Weekly Mindbody Attendance Sync
+
+on:
+  schedule:
+    - cron: '0 14 * * 1'  # Runs every Monday at 6am PST (adjust if needed)
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install requests
+        run: pip install requests
+      - name: Run attendance script
+        env:
+          MINDBODY_SOURCE_NAME: ${{ secrets.MINDBODY_SOURCE_NAME }}
+          MINDBODY_PASSWORD: ${{ secrets.MINDBODY_PASSWORD }}
+          PABBLY_WEBHOOK_URL: ${{ secrets.PABBLY_WEBHOOK_URL }}
+        run: python weekly_attendance.py

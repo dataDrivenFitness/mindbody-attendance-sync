@@ -21,4 +21,4 @@ jobs:
           MINDBODY_SOURCE_NAME: ${{ secrets.MINDBODY_SOURCE_NAME }}
           MINDBODY_PASSWORD: ${{ secrets.MINDBODY_PASSWORD }}
           PABBLY_WEBHOOK_URL: ${{ secrets.PABBLY_WEBHOOK_URL }}
-        run: python weekly_attendance.py
+        run: python weekly_attendance_summary_siteid5720243.py
